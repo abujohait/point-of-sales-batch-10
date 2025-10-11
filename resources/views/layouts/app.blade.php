@@ -1,80 +1,79 @@
 <!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
+  <link rel="shortcut icon" type="image/png" href="{{ asset('/') }}assets/images/logos/favicon.png" />
+  <link rel="stylesheet" href="{{ asset('/') }}assets/css/styles.min.css" />
 
-    <!-- CSRF Token -->
-    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
-
-    <!-- Scripts -->
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+  <style>
+    
+  </style>
 </head>
+
 <body>
-    <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+  <!--  Body Wrapper -->
+  <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+    data-sidebar-position="fixed" data-header-position="fixed">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+    <!--  App Topstrip -->
+    {{-- <div class="app-topstrip bg-dark py-6 px-3 w-100 d-lg-flex align-items-center justify-content-between">
+      <div class="d-flex align-items-center justify-content-center gap-5 mb-2 mb-lg-0">
+        <a class="d-flex justify-content-center" href="#">
+          <img src="{{ asset('/') }}assets/images/logos/logo-wrappixel.svg" alt="" width="150">
+        </a>
 
-                    </ul>
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            @if (Route::has('login'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                                </li>
-                            @endif
+      </div>
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
-                                </a>
+      <div class="d-lg-flex align-items-center gap-2">
+        <h3 class="text-white mb-2 mb-lg-0 fs-5 text-center">Check Flexy Premium Version</h3>
+        <div class="d-flex align-items-center justify-content-center gap-2">
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+          <div class="dropdown d-flex">
+            <a class="btn btn-primary d-flex align-items-center gap-1 " href="javascript:void(0)" id="drop4"
+              data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="ti ti-shopping-cart fs-5"></i>
+              Buy Now
+              <i class="ti ti-chevron-down fs-5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
+    </div> --}}
+    <!-- Sidebar Start -->
+    @include('include.sidebar')
+    <!--  Sidebar End -->
+    <!--  Main wrapper -->
+    <div class="body-wrapper">
+      <!--  Header Start -->
+      @include('include.header')
+      <!--  Header End -->
+      <div class="body-wrapper-inner">
+        <div class="container-fluid">
+          <!--  Row 1 -->
+          @yield('content')
+          <div class="py-6 px-6 text-center">
+            <p class="mb-0 fs-4">Design and Developed by <a href="#"
+                class="pe-1 text-primary text-decoration-underline">Wrappixel.com</a> Distributed by <a href="https://themewagon.com" target="_blank" >ThemeWagon</a></p>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
+  <script src="{{ asset('/') }}assets/libs/jquery/dist/jquery.min.js"></script>
+  <script src="{{ asset('/') }}assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="{{ asset('/') }}assets/js/sidebarmenu.js"></script>
+  <script src="{{ asset('/') }}assets/js/app.min.js"></script>
+  <script src="{{ asset('/') }}assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+  <script src="{{ asset('/') }}assets/libs/simplebar/dist/simplebar.js"></script>
+  <script src="{{ asset('/') }}assets/js/dashboard.js"></script>
+  <!-- solar icons -->
+  <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
 </body>
+
 </html>

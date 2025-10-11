@@ -13,13 +13,21 @@ return new class extends Migration
     {
         Schema::create('transections', function (Blueprint $table) {
             $table->id();
-            $table->string("sls/prcs");
+            $table->string("type");
             $table->string("invoice");
             $table->string("debit");
             $table->string("credit");
-            $table->foreignIdFor(App\Models\customer::class, 'customer_id')->constrained('customers');
-            $table->foreignIdFor(App\Models\supplier::class, 'supplier_id')->constrained('supplierscle');
+            $table->unsignedBigInteger('customer_id');
+            $table->unsignedBigInteger('supplier_id');
             $table->date("date");
+
+
+
+
+            $table->foreign('customer_id')->references('id')->on('customers');
+            $table->foreign('supplier_id')->references('id')->on('suppliers');
+
+
             $table->timestamps();
         });
     }

@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string("Address");
             $table->string("Default_Currency");
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
