@@ -4,13 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Flexy Free Bootstrap Admin Template by WrapPixel</title>
+  <title>{{ $title }} || Point of Sales</title>
   <link rel="shortcut icon" type="image/png" href="{{ asset('/') }}assets/images/logos/favicon.png" />
   <link rel="stylesheet" href="{{ asset('/') }}assets/css/styles.min.css" />
-
+  <link rel="stylesheet" href="//cdn.datatables.net/2.3.4/css/dataTables.dataTables.min.css">
 
   <style>
-    
+
   </style>
 </head>
 
@@ -74,6 +74,14 @@
   <script src="{{ asset('/') }}assets/js/dashboard.js"></script>
   <!-- solar icons -->
   <script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.8/dist/iconify-icon.min.js"></script>
+
+  <script src="//cdn.datatables.net/2.3.4/js/dataTables.min.js"></script>
+
+  <script>
+    new DataTable('#datatable');
+  </script>
+
+
 </body>
 
 </html>
