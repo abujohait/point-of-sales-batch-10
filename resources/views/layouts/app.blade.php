@@ -53,7 +53,7 @@
       @include('include.header')
       <!--  Header End -->
       <div class="body-wrapper-inner">
-        <div class="container-fluid">
+        <div class="container-fluid" style="padding-top: 75px;">
           <!--  Row 1 -->
           @yield('content')
           <div class="py-6 px-6 text-center">
@@ -79,6 +79,8 @@
   <script>
     new DataTable('#datatable');
   </script>
+
+  @yield('script')
 
 
 </body>

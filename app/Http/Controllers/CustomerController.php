@@ -60,7 +60,7 @@ class CustomerController extends Controller
         $data['title'] = 'Edit Customer';
         return view('Customer_List.customer.edit')->with($data);
         dd($data);
-        
+
     }
 
     /**
@@ -87,5 +87,13 @@ class CustomerController extends Controller
         $delete->delete();
 
         return redirect()->route('customer.index');
+    }
+
+
+
+    public function getCustomer($id){
+        $data = ModelsCustomer::where('id', $id)->first();
+
+        return response()->json($data);
     }
 }

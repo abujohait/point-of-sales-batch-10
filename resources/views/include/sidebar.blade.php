@@ -1,4 +1,4 @@
-<aside class="left-sidebar">
+<aside class="left-sidebar" style="top: 0;">
       <!-- Sidebar scroll-->
       <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
@@ -40,7 +40,7 @@
               <ul aria-expanded="false" class="collapse first-level">
                 <li class="sidebar-item">
                   <a class="sidebar-link justify-content-between"
-                    href="#">
+                    href="{{ route('sales.create') }}">
                     <div class="d-flex align-items-center gap-3">
                       <div class="round-16 d-flex align-items-center justify-content-center">
                         <i class="ti ti-circle"></i>
