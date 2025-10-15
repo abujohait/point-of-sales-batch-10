@@ -103,6 +103,27 @@
                 </li>
               </ul>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link justify-content-between has-arrow" href="javascript:void(0)" aria-expanded="false">
+                <div class="d-flex align-items-center gap-3">
+                  <span class="d-flex">
+                    <i class="ti ti-layout-grid"></i>
+                  </span>
+                  <span class="menu">Customer List</span>
+                </div>
+              </a>
+                <ul aria-expanded="false" class="collapse first-level">
+                <li class="sidebar-item">
+                  <a class="sidebar-link justify-content-between"
+                    href="{{ route('customer.index') }}">
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="round-16 d-flex align-items-center justify-content-center">
+                        <i class="ti ti-circle"></i>
+                      </div>
+                      <span class="hide-menu">Customer</span>
+                    </div>
+
+            </li>
           </ul>
         </nav>
         <!-- End Sidebar navigation -->
