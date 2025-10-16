@@ -2,21 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\unit as ModelsUnit;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
+use App\Models\account as ModelsAccount;
 
-class UnitController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $data['title'] = 'Unit List';
-        $data['items'] = ModelsUnit::whereNull('deleted_at')->get();
+        $data['title'] = 'Account List';
+        $data['items'] = ModelsAccount::whereNull('deleted_at')->get();
 
-        return view('setting.unit.index')->with($data);
+        return view('account.index')->with($data);
     }
 
     /**
@@ -24,8 +23,8 @@ class UnitController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Create Unit';
-        return view('setting.unit.add')->with($data);
+        $data['title'] = 'Account List';
+        return view('account.add')->with($data);
     }
 
     /**
@@ -33,11 +32,13 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new ModelsUnit();
+        $data = new ModelsAccount();
         $data->name = $request->name;
+        $data->details = $request->details;
+        $data->balance = $request->balance;
         $data->save();
 
-        return redirect()->route('unit.index');
+        return redirect()->route('account.index');
     }
 
     /**
@@ -53,9 +54,9 @@ class UnitController extends Controller
      */
     public function edit(string $id)
     {
-        $data['item'] = ModelsUnit::find($id);
-        $data['title'] = 'Edit Unit';
-        return view('setting.unit.edit')->with($data);
+        $data['item'] = ModelsAccount::find($id);
+        $data['title'] = 'Edit Account_List';
+        return view('account.edit')->with($data);
     }
 
     /**
@@ -63,11 +64,13 @@ class UnitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = ModelsUnit::find($id);
+        $data = ModelsAccount::find($id);
         $data->name = $request->name;
+        $data->details = $request->details;
+        $data->balance = $request->balance;
         $data->save();
 
-        return redirect()->route('unit.index');
+        return redirect()->route('account.index');
     }
 
     /**
@@ -75,6 +78,9 @@ class UnitController extends Controller
      */
     public function destroy(string $id)
     {
+        $delete = ModelsAccount::find($id);
+        $delete->delete();
 
+        return redirect()->route('account.index');
     }
 }

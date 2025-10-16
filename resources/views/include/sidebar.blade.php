@@ -135,6 +135,16 @@
                 </div>
               </a>
             </li>
+            <li class="sidebar-item">
+              <a class="sidebar-link justify-content-between has-arrow" href= "{{ route('account.index') }}" "javascript:void(0)" aria-expanded="false" >
+                <div class="d-flex align-items-center gap-3">
+                  <span class="d-flex">
+                    <i class="ti ti-layout-grid"></i>
+                  </span>
+                  <span class="menu">Accounts</span>
+                </div>
+              </a>
+            </li>
         </nav>
         <!-- End Sidebar navigation -->
       </div>
