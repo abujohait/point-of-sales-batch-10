@@ -11,6 +11,7 @@ Route::get('home', [App\Http\Controllers\HomeController::class, 'index'])->name(
 Route::resource('unit', App\Http\Controllers\UnitController::class);
 Route::resource('customer', App\Http\Controllers\CustomerController::class);
 Route::resource('sales', App\Http\Controllers\SalesController::class);
+Route::resource('supplier', App\Http\Controllers\SupplierController::class);
 
 Route::get('get-customer/{id}', [App\Http\Controllers\CustomerController::class, 'getCustomer']);
 Route::get('get-product/{id}', [App\Http\Controllers\ProductController::class, 'getProduct']);
