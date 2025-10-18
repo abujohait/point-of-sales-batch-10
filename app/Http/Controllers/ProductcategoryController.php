@@ -2,21 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\unit as ModelsUnit;
 use Illuminate\Http\Request;
-use SebastianBergmann\CodeCoverage\Report\Xml\Unit;
+use App\Models\product_category as ModelsProduct_Category;
 
-class UnitController extends Controller
+class ProductcategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
+            {
         $data['title'] = 'Unit List';
-        $data['items'] = ModelsUnit::whereNull('deleted_at')->get();
+        $data['items'] = ModelsProduct_Category::whereNull('deleted_at')->get();
 
-        return view('setting.unit.index')->with($data);
+        return view('product_category.index')->with($data);
+    }
     }
 
     /**
@@ -24,8 +25,8 @@ class UnitController extends Controller
      */
     public function create()
     {
-        $data['title'] = 'Create Unit';
-        return view('setting.unit.add')->with($data);
+        $data['title'] = 'Create Product Category';
+        return view('product_category.add')->with($data);
     }
 
     /**
@@ -33,11 +34,11 @@ class UnitController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new ModelsUnit();
+        $data = new ModelsProduct_Category();
         $data->name = $request->name;
         $data->save();
 
-        return redirect()->route('unit.index');
+        return redirect()->route('product_category.index');
     }
 
     /**
@@ -45,7 +46,7 @@ class UnitController extends Controller
      */
     public function show(string $id)
     {
-        //
+
     }
 
     /**
@@ -53,9 +54,9 @@ class UnitController extends Controller
      */
     public function edit(string $id)
     {
-        $data['item'] = ModelsUnit::find($id);
-        $data['title'] = 'Edit Unit';
-        return view('setting.unit.edit')->with($data);
+        $data['item'] = ModelsProduct_Category::find($id);
+        $data['title'] = 'Edit Product Category';
+        return view('product_category.edit')->with($data);
     }
 
     /**
@@ -63,11 +64,11 @@ class UnitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $data = ModelsUnit::find($id);
+        $data = ModelsProduct_Category::find($id);
         $data->name = $request->name;
         $data->save();
 
-        return redirect()->route('unit.index');
+        return redirect()->route('product_category.index');
     }
 
     /**
@@ -75,9 +76,9 @@ class UnitController extends Controller
      */
     public function destroy(string $id)
     {
-        $delete = ModelsUnit::find($id);
+                $delete = ModelsProduct_Category::find($id);
         $delete->delete();
 
-        return redirect()->route('unit.index');
+        return redirect()->route('product_category.index');
     }
 }
