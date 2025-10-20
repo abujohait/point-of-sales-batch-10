@@ -71,14 +71,14 @@
                                                 Total
                                             </th>
                                             <th>
-                                                <a href="#" class="btn btn-success">+</a>
+                                                <a class="btn btn-success add_row">+</a>
                                             </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
-                                        <tr>
+                                    <tbody id="item_grid">
+                                        <tr class="item_row_1">
                                             <td>
-                                                <select name="item_id" id="item_id" class="form-select item_id">
+                                                <select name="item_id" id="item_id" data-id="1" class="form-select item_id">
 
                                                     @if (count($products) > 0)
                                                         <option value="0">Select</option>
@@ -90,13 +90,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="qty" class="form-control" id="qty">
+                                                <input type="number" step="any" name="qty" class="form-control qty_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="price" class="form-control" id="price">
+                                                <input type="number" step="any" name="price" class="form-control price_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="total" class="form-control" id="total">
+                                                <input type="number" step="any" name="total" class="form-control total_1">
                                             </td>
                                             <td>
                                                 <a href="" class="btn btn-danger">X</a>
@@ -187,6 +187,9 @@
                 e.preventDefault();
 
                 let id = $(this).val();
+
+                console.log(id)
+
                 let baseURl = "{{ url('/') }}";
 
 
@@ -196,13 +199,77 @@
                     dataType: 'json',
                     success: function(data) {
 
-                        $('#price').val(data.price);
+                        $('.price_1').val(data.price);
 
                     },
                     error: function(jqXHR, textStatus, errorThrown) {
                         console.error("AJAX error: " + textStatus, errorThrown);
                     }
                 });
+            });
+
+
+
+
+            let i = 1;
+            $('.add_row').on('click', function(){
+                i++;
+                $('#item_grid').append(`<tr class="item_row_${i}">
+                                            <td>
+                                                <select name="item_id" id="item_id" data-id="${i}" class="form-select item_id">
+
+                                                    @if (count($products) > 0)
+                                                        <option value="0">Select</option>
+                                                        @foreach ($products as $product)
+                                                            <option value="{{ $product->id }}">{{ $product->name??'' }}</option>
+                                                        @endforeach
+                                                    @endif
+
+                                                </select>
+                                            </td>
+                                            <td>
+                                                <input type="number" step="any" name="qty" class="form-control qty_${i}">
+                                            </td>
+                                            <td>
+                                                <input type="number" step="any" name="price" class="form-control price_${i}">
+                                            </td>
+                                            <td>
+                                                <input type="number" step="any" name="total" class="form-control total_${i}">
+                                            </td>
+                                            <td>
+                                                <a href="" class="btn btn-danger">X</a>
+                                            </td>
+                                        </tr>`);
+
+
+
+                //get item info
+                $('.item_id').on('change', function(){
+
+                    let id = $(this).val();
+                    let row_no = $(this).attr('data-id');
+                    let baseURl = "{{ url('/') }}";
+
+
+                    $.ajax({
+                        url: baseURl + '/get-product/'+id,
+                        method: 'GET',
+                        dataType: 'json',
+                        success: function(data) {
+
+                            $('.price_'+row_no).val(data.price);
+
+                        },
+                        error: function(jqXHR, textStatus, errorThrown) {
+                            console.error("AJAX error: " + textStatus, errorThrown);
+                        }
+                    });
+                });
+
+
+
+
+
             });
     </script>
 @endsection
