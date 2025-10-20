@@ -90,13 +90,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="qty" class="form-control qty_1">
+                                                <input type="number" step="any" data-id="1" name="qty" class="form-control qty qty_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="price" class="form-control price_1">
+                                                <input type="number" step="any" data-id="1" name="price" class="form-control price price_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="total" class="form-control total_1">
+                                                <input type="number" step="any" name="total" class="form-control total total_1">
                                             </td>
                                             <td>
                                                 <a href="" class="btn btn-danger">X</a>
@@ -119,7 +119,7 @@
                                                 Discount
                                             </td>
                                             <td>
-                                                <input type="number" step="any" class="form-control" name="discount" id="discount">
+                                                <input type="number" step="any" class="form-control discount" name="discount" id="discount">
                                             </td>
                                         </tr>
                                         <tr>
@@ -157,6 +157,7 @@
 
 @section('script')
     <script>
+
             $('.customer_id').on('change', function(e){
                 e.preventDefault();
 
@@ -178,7 +179,44 @@
                         console.error("AJAX error: " + textStatus, errorThrown);
                     }
                 });
+
+
             });
+
+            function calculator(){
+
+                 $('.qty, .price, #discount, #total').on('keyup', function(){
+
+                    let row = $(this).attr('data-id');
+                    let qty = $('.qty_'+row).val();
+                    let price = $('.price_'+row).val();
+
+                    let total = qty * price;
+                    $('.total_'+row).val(total);
+
+                    let sub_total = 0;
+                    $(".total").each(function() {
+                        sub_total = parseFloat(this.value) + parseFloat(sub_total);
+                    });
+
+                    $('#sub_total').val(sub_total);
+
+                    let discount = $('#discount').val();
+
+                    let due_amount =  sub_total - ((sub_total / 100) * discount);
+
+                    $('#due').val(due_amount);
+
+
+                    let total_amount = $('#total').val();
+                    $('#due').val(due_amount - total_amount);
+
+
+                });
+            }
+
+            calculator();
+
 
 
 
@@ -187,11 +225,7 @@
                 e.preventDefault();
 
                 let id = $(this).val();
-
-                console.log(id)
-
                 let baseURl = "{{ url('/') }}";
-
 
                 $.ajax({
                     url: baseURl + '/get-product/'+id,
@@ -228,13 +262,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="qty" class="form-control qty_${i}">
+                                                <input type="number" step="any" data-id="${i}" name="qty" class="form-control qty qty_${i}">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="price" class="form-control price_${i}">
+                                                <input type="number" step="any" data-id="${i}" name="price" class="form-control price price_${i}">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="total" class="form-control total_${i}">
+                                                <input type="number" step="any" name="total" class="form-control total total_${i}">
                                             </td>
                                             <td>
                                                 <a href="" class="btn btn-danger">X</a>
@@ -266,9 +300,7 @@
                     });
                 });
 
-
-
-
+                calculator();
 
             });
     </script>
