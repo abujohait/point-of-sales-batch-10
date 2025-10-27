@@ -9,7 +9,7 @@
                     <h3 class="d-inline">{{ $title }}</h3>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('unit.store') }}" method="post">
+                    <form action="{{ route('sales.store') }}" method="post">
 
                         @csrf
 
@@ -78,7 +78,7 @@
                                     <tbody id="item_grid">
                                         <tr class="item_row_1">
                                             <td>
-                                                <select name="item_id" id="item_id" data-id="1" class="form-select item_id">
+                                                <select name="details[0][item_id]" id="item_id" data-id="1" class="form-select item_id">
 
                                                     @if (count($products) > 0)
                                                         <option value="0">Select</option>
@@ -90,13 +90,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" step="any" data-id="1" name="qty" class="form-control qty qty_1">
+                                                <input type="number" step="any" data-id="1" name="details[0][qty]" class="form-control qty qty_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" data-id="1" name="price" class="form-control price price_1">
+                                                <input type="number" step="any" data-id="1" name="details[0][price]" class="form-control price price_1">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="total" class="form-control total total_1">
+                                                <input type="number" step="any" name="details[0][total]" class="form-control total total_1">
                                             </td>
                                             <td>
                                                 <a href="" class="btn btn-danger">X</a>
@@ -250,7 +250,7 @@
                 i++;
                 $('#item_grid').append(`<tr class="item_row_${i}">
                                             <td>
-                                                <select name="item_id" id="item_id" data-id="${i}" class="form-select item_id">
+                                                <select name="details[${i}][item_id]" id="item_id" data-id="${i}" class="form-select item_id">
 
                                                     @if (count($products) > 0)
                                                         <option value="0">Select</option>
@@ -262,13 +262,13 @@
                                                 </select>
                                             </td>
                                             <td>
-                                                <input type="number" step="any" data-id="${i}" name="qty" class="form-control qty qty_${i}">
+                                                <input type="number" step="any" data-id="${i}" name="details[${i}][qty]" class="form-control qty qty_${i}">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" data-id="${i}" name="price" class="form-control price price_${i}">
+                                                <input type="number" step="any" data-id="${i}" name="details[${i}][price]" class="form-control price price_${i}">
                                             </td>
                                             <td>
-                                                <input type="number" step="any" name="total" class="form-control total total_${i}">
+                                                <input type="number" step="any" name="details[${i}][total]" class="form-control total total_${i}">
                                             </td>
                                             <td>
                                                 <a href="" class="btn btn-danger">X</a>

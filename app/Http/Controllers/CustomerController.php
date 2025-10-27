@@ -33,7 +33,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-         $data = new ModelsCustomer();
+        $data = new ModelsCustomer();
         $data->name = $request->name;
         $data->address = $request->address;
         $data->phone = $request->phone;
